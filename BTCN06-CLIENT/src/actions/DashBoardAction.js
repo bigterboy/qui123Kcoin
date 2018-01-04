@@ -5,7 +5,7 @@ import {
     SHOW_ALL_TRANSACTIONS_SEND_SUCCESS, SEND_MONEY, SEND_MONEY_FAILURE, SEND_MONEY_SUCCESS
 } from '../constants/ActionTypes'
 import axios from 'axios'
-const ROOT_URL = 'https://btcn04-server.herokuapp.com';
+const ROOT_URL = 'http://localhost:5000';
 
 export function setDashBoardAmount(amount){
     return {

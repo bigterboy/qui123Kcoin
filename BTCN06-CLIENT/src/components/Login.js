@@ -10,11 +10,11 @@ import {
 class Login extends React.Component {
     
     render() {
-        let message = '';
-        if(this.props.location){
-            console.log("location",this.props.location);
-            message = this.props.location.state.message;
-        }
+        // let message = '';
+        // if(this.props.location){
+        //     console.log("location",this.props.location);
+        //     message = this.props.location.state.message;
+        // }
         return (
                 <div className="container">
                     <div className="row">
@@ -34,7 +34,7 @@ class Login extends React.Component {
 
                                     <div className="col-sm-12">
                                         <hr />
-                                        <p className="text-success">{message}</p>
+
                                         <p className="text-danger">{this.props.message}</p>
                                     </div>
                                 </div>

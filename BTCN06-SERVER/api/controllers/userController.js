@@ -7,6 +7,8 @@ var uuidv4 = require('uuid/v4');
 const bcrypt = require('bcrypt-nodejs');
 var jwt = require('jsonwebtoken');
 
+var randomstring = require("randomstring");
+
 
 exports.authenticate = (req, res, next)=>{
     console.log('req', req.query);
@@ -45,7 +47,9 @@ exports.login = (req, res, next) =>{
         }
     })
 
-   
+
+
+
 
     var errors = req.validationErrors();
     if(errors){
@@ -71,6 +75,17 @@ exports.login = (req, res, next) =>{
             res.json({status : 0, message : "WalletId or Password is incorrect"})
             return;
         }
+
+        if(!user.active)
+        {
+            res.json({status : 0, message : "You need to verify email first!"})
+            return;
+        }
+
+
+
+
+
         const payload = {
             admin : false
         }
@@ -82,8 +97,11 @@ exports.login = (req, res, next) =>{
     });
 }
 
+
+
+
 exports.sign_up = function(req, res, next){
-    console.log("Vô");
+    //console.log("Vô");
     req.checkBody({
         email : {
             notEmpty : true,
@@ -104,7 +122,7 @@ exports.sign_up = function(req, res, next){
         return;
     }
 
-    console.log("chay nua k?");
+    //console.log("chay nua k?");
 
     var email = req.body.email;
     var password = req.body.password;
@@ -115,7 +133,7 @@ exports.sign_up = function(req, res, next){
             return;
         }
         if(user){
-            res.json({status : 0, message : "Email was used"})
+            res.json({status : 0, message : "Email was used123"})
             return;
         }
         
@@ -125,6 +143,8 @@ exports.sign_up = function(req, res, next){
         newUser.balances = 1000;
         newUser.walletId = uuidv4();
 
+        newUser.stokenID = randomstring.generate(36); // tự động phát sinh ngẫu nhiên
+        newUser.active = false;
         newUser.save((err, newUser)=>{
             if(err){
                 res.json({status : 0, message : err});
@@ -132,6 +152,98 @@ exports.sign_up = function(req, res, next){
             }
             res.json({status:1, messsage : 'success', user : newUser});
         })
+    });
+}
 
+
+exports.sign_up2 = function(req, res, next){
+    //console.log("Vô");
+    req.checkBody({
+        email : {
+            notEmpty : true,
+            isEmail : true,
+            errorMessage : "Invalid email"
+        },
+        password : {
+            notEmpty : true,
+            errorMessage : "Invalid password"
+        }
+    })
+    req.checkBody('rePassword','Passwords do not match.').equals(req.body.password);
+
+    var errors = req.validationErrors();
+    if(errors){
+        console.log(errors);
+        res.json({status : 0, errors : errors, message : errors[0].msg});
+        return;
+    }
+
+    //console.log("chay nua k?");
+
+    var email = req.body.email;
+    var password = req.body.password;
+
+    User.findOne({email : email}, (err, user)=>{
+        if(err){
+            res.json({status : 0, message : err});
+            return;
+        }
+        if(user){
+            res.json({status : 0, message : "Email was used123"})
+            return;
+        }
+
+        var newUser = new User();
+        newUser.email = email;
+        newUser.password = bcrypt.hashSync(password);
+        newUser.balances = 1000;
+        newUser.walletId = uuidv4();
+
+        newUser.stokenID = randomstring.generate(36); // tự động phát sinh ngẫu nhiên
+        newUser.active = true;
+        newUser.save((err, newUser)=>{
+            if(err){
+                res.json({status : 0, message : err});
+                return;
+            }
+            res.json({status:1, messsage : 'success', user : newUser});
+        })
+    });
+}
+
+
+
+
+exports.test = function(req, res, next){
+    console.log("vô test");
+
+
+
+    var errors = req.validationErrors();
+    if(errors){
+        console.log(errors);
+        res.json({status : 0, errors : errors, message : errors[0].msg});
+        return;
+    }
+
+    //console.log("chay nua k?");
+
+    var email = req.body.email;
+    //var vertify = req.body.verify;
+    //var password = req.body.password;
+    //console.log(vertify);
+    //console.log(email);
+    User.findOne({email : 'bigterboy@yahoo.com.vn'}, (err, user)=>{
+        if(err){
+            res.json({status : 0, message : err});
+            return;
+        }
+        if(user){
+            user.active = true;
+            //user.balances = 20000;
+            //console.log(user);
+            user.save();
+            return;
+        }
     });
 }

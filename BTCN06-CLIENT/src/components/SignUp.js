@@ -30,6 +30,7 @@ class SignUp extends React.Component {
 
                                     <div className="col-sm-12">
                                         <hr />
+
                                         {
                                             this.props.user ? (
                                                 <div>
@@ -41,6 +42,9 @@ class SignUp extends React.Component {
                                                 <p className="text-danger">{this.props.message}</p>
                                             )
                                         }
+
+
+
                                     </div>
                                 </div>
 

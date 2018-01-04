@@ -2,7 +2,7 @@ import axios from 'axios'
 
 import {SHOW_ALL_TRANSACTIONS, SHOW_ALL_TRANSACTIONS_FAILURE, SHOW_ALL_TRANSACTIONS_SUCCESS} from '../constants/ActionTypes'
 
-const ROOT_URL = 'https://btcn04-server.herokuapp.com';
+const ROOT_URL = 'http://localhost:5000';
 
 export  function showAllTransactions(){
     const request = axios.get(`${ROOT_URL}/user/transaction`);

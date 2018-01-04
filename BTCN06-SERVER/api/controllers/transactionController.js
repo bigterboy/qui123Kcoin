@@ -46,15 +46,15 @@ exports.getLatestTransactionsByReceiverId = (req, res, next)=>{
 
 
 
-exports.addTransaction = (req, res, next) => {
-    var transaction = req.body;
+    exports.addTransaction = (req, res, next) => {
+        var transaction = req.body;
 
-    
-    User.findOne({walletId : transaction.senderId}, (err, sender)=>{
+
+        User.findOne({walletId : transaction.senderId}, (err, sender)=>{
         console.log("find sender");
-        if(err){
-            res.send(err);
-            return;
+            if(err){
+                res.send(err);
+                return;
         }
         if(sender.balances < transaction.amount){
             res.json({status : 0, message : 'Your balance is not enough to send'});
@@ -109,5 +109,4 @@ exports.addTransaction = (req, res, next) => {
         });
 
     });
-
 }

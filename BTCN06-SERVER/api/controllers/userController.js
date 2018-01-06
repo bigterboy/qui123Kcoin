@@ -9,6 +9,11 @@ var jwt = require('jsonwebtoken');
 
 var randomstring = require("randomstring");
 
+const ursa = require('ursa');
+const _ = require('lodash');
+const crypto = require('crypto');
+
+const HASH_ALGORITHM = 'sha256';
 
 exports.authenticate = (req, res, next)=>{
     console.log('req', req.query);
@@ -143,6 +148,20 @@ exports.sign_up = function(req, res, next){
         newUser.balances = 1000;
         newUser.walletId = uuidv4();
 
+        newUser.privateKey = "12314";
+        newUser.publicKey = "154423";
+        newUser.address = "f3243";
+
+
+        let privateKey = ursa.generatePrivateKey(1024, 65537);
+        let publicKey = privateKey.toPublicPem();
+
+        newUser.privateKey = privateKey.toPrivatePem('hex');
+            newUser.publicKey = publicKey.toString('hex');
+            newUser.address = hash(publicKey).toString('hex');
+
+
+
         newUser.stokenID = randomstring.generate(36); // tự động phát sinh ngẫu nhiên
         newUser.active = false;
         newUser.save((err, newUser)=>{
@@ -247,3 +266,22 @@ exports.test = function(req, res, next){
         }
     });
 }
+
+
+
+let generateAddress = function () {
+    let privateKey = ursa.generatePrivateKey(1024, 65537);
+    let publicKey = privateKey.toPublicPem();
+    return {
+        privateKey: privateKey.toPrivatePem('hex'),
+        publicKey: publicKey.toString('hex'),
+        address: hash(publicKey).toString('hex')
+    };
+};
+
+let hash = function (data) {
+    let hash = crypto.createHash(HASH_ALGORITHM);
+    hash.update(data);
+    return hash.digest();
+};
+

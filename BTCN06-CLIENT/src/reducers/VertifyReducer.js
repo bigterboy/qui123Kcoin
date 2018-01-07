@@ -1,60 +1,37 @@
-
-import
-{SIGNUP, SIGNUP_FAILURE, SIGNUP_SUCCESS,SET_VERTIFY_EMAIL,
-    SET_SIGNUP_EMAIL, SET_SIGNUP_REPASSWORD, SET_SIGNUP_PASSWORD} from '../constants/ActionTypes'
+import{
+    CHECK_VERIFY,
+    SET_VERIFY_CODE,
+    VERIFY_SET_MESSAGE,
+    VERIFY_IS_SUCCESS
+} from '../constants/ActionTypes'
 
 
 const initState = {
-    email : '',
-    vertify : '',
-    password : '',
-    rePassword : '',
-    message : '',
-    user : '',
-    status : ''
-
+    verify : '',
+    verify_is_success: false,
+    verify_message: '',
+    verify_walletId: ''
 }
 
 export default function VertifyReducer(state = initState, action){
     switch(action.type){
-        case SET_SIGNUP_EMAIL : return {
+        case VERIFY_SET_MESSAGE : return {
             ...state,
-            email : action.email
+            verify_message : action.message,
+            verify_walletId: action.walletId
+
         }
-        case SET_VERTIFY_EMAIL : return {
+        case VERIFY_IS_SUCCESS : return {
             ...state,
-            vertify : action.vertify
+            verify_is_success: action.stateValue
         }
-        case SET_SIGNUP_PASSWORD : return {
+        case SET_VERIFY_CODE : return {
             ...state,
-            password : action.password
+            verify : action.verify
         }
-        case SET_SIGNUP_REPASSWORD : return {
-            ...state,
-            rePassword : action.rePassword
+        case CHECK_VERIFY : return {
+            ...state
         }
-        case SIGNUP : return {
-            ...state,
-            user : null,
-            status : 'signup'
-        }
-        case SIGNUP_SUCCESS : return {
-            ...state,
-            user : action.payload.data.user,
-            password : '',
-            rePassword : '',
-            message : 'Sign Up Successfully',
-            status : 'signup success'
-        }
-        case SIGNUP_FAILURE :
-            return {
-                ...state,
-                user : null,
-                message : action.payload.data.message,
-                status : 'signup failure',
-                password : '',
-                rePassword : ''
-            }
         default : return state;
     }
 }

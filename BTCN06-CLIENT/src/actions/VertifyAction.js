@@ -1,9 +1,15 @@
 import axios from 'axios'
 
-import {SIGNUP, SIGNUP_FAILURE, SIGNUP_SUCCESS,SET_VERTIFY_EMAIL,
-    SET_SIGNUP_EMAIL, SET_SIGNUP_REPASSWORD, SET_SIGNUP_PASSWORD
-}
-    from '../constants/ActionTypes'
+import {
+    SIGNUP_FAILURE,
+    VERIFY_SET_MESSAGE,
+    SET_VERIFY_CODE,
+    SET_SIGNUP_EMAIL,
+    SET_SIGNUP_REPASSWORD,
+    SET_SIGNUP_PASSWORD,
+    CHECK_VERIFY,
+    VERIFY_IS_SUCCESS
+}from '../constants/ActionTypes'
 
 const ROOT_URL = 'http://localhost:5000'
 
@@ -16,10 +22,10 @@ export function setSignUpEmail(email){
     }
 }
 
-export function setSignUpVertify(vertify){
+export function setSignUpVertify(verify){
     return {
-        type : SET_VERTIFY_EMAIL,
-        vertify
+        type : SET_VERIFY_CODE,
+        verify
     }
 }
 
@@ -33,27 +39,30 @@ export function setSignUpPassword(password){
     }
 }
 
-export function setSignUpRePassword(rePassword){
-    return {
-        type : SET_SIGNUP_REPASSWORD,
-        rePassword
-    }
-}
+export function checkVerify(account) {
 
-export function signUp(account) {
+    console.log(account);
 
-    const request = axios.post(`${ROOT_URL}/user/sign-up2`, account);
+    const request = axios.post(`${ROOT_URL}/user/check-verify`, account);
 
     return {
-        type : SIGNUP,
+        type : CHECK_VERIFY,
         payload : request
     }
 }
 
-export function signUpSuccess(response){
+export function setMessage(message, walletId){
     return {
-        type : SIGNUP_SUCCESS,
-        payload : response
+        type : VERIFY_SET_MESSAGE,
+        message,
+        walletId
+    }
+}
+
+export function verifySuccess(stateValue){
+    return {
+        type: VERIFY_IS_SUCCESS,
+        stateValue
     }
 }
 

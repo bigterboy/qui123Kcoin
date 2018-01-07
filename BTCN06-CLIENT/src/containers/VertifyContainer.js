@@ -2,21 +2,12 @@ import React from 'react'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Vertify from '../components/Vertify'
-import * as VertifyAction from '../actions/VertifyAction'
+import * as VerifyAction from '../actions/VertifyAction'
 
 class SignUpContainer extends React.Component {
 
     constructor(props) {
         super(props);
-
-        /*this.state = {
-            email: '',
-            password: '',
-            rePassword: '',
-            message: '',
-            user: ''
-        }*/
-
         this.handleDataInputChange = this.handleDataInputChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
     }
@@ -24,71 +15,60 @@ class SignUpContainer extends React.Component {
     handleDataInputChange(e) {
         const name = e.target.name;
         const value = e.target.value;
-        switch(name){
-            case 'email' : this.props.actions.setSignUpEmail(value); break;
-            case 'vertify' : this.props.actions.setSignUpVertify(value); break;
-            case 'password' : this.props.actions.setSignUpPassword(value); break;
-            case 'rePassword' : this.props.actions.setSignUpRePassword(value);break;
-        }
-
+        this.props.actions.setSignUpVertify(value);
     }
 
     handleClick() {
         const account = {
-            email: this.props.todos.email,
-            vertify: this.props.todos.vertify,
-            password: this.props.todos.password,
-            rePassword: this.props.todos.rePassword
+            verify: this.props.todos.verify
         }
 
-        this.props.actions.signUp(account).payload
+        this.props.actions.checkVerify(account).payload
             .then((result) => {
                 if (result.data.status === 1) {
-                    this.props.actions.signUpSuccess(result);
+                    console.log('verify thanh cong. Chao: ' + result.data.email);
+                    this.props.actions.setMessage('Verification is valid!', result.data.walletId)
+                    this.props.actions.verifySuccess(true);
                 }
                 else {
-                    this.props.actions.signUpFailure(result)
+                    console.log('verify that bai. Loi: '+ result.data.message);
+                    this.props.actions.setMessage('Verification not valid!', '');
                 }
-            }).catch((error) => {
-            console.log(error);
-        });
-
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
     render() {
         const {todos, actions} = this.props;
         return (
             <div>
-                <Vertify message={todos.message}
-                        email={todos.email}
-                         vertify={todos.vertify}   // cais nay dung de lam gi
-                        password={todos.password}
-                        user={todos.user}
-                        rePassword={todos.rePassword}
-                        onChange={this.handleDataInputChange}
-                        onClick={this.handleClick} />
+                <Vertify verify_message={todos.verify_message}
+                         verify_is_success={todos.verify_is_success}
+                         verify_walletId={todos.verify_walletId}
+                         verify={todos.verify}
+                         onChange={this.handleDataInputChange}
+                         onClick={this.handleClick} />
             </div>
         );
     }
 }
 
 function mapStateToProps(state) {
-
     return {
         todos: {
-            email: state.VertifyReducer.email,
-            vertify: state.VertifyReducer.vertify,
-            password: state.VertifyReducer.password,
-            rePassword: state.VertifyReducer.rePassword,
-            message: state.VertifyReducer.message,
-            user: state.VertifyReducer.user
+            verify: state.VertifyReducer.verify,
+            verify_message: state.VertifyReducer.verify_message,
+            verify_walletId: state.VertifyReducer.verify_walletId,
+            verify_is_success: state.VertifyReducer.verify_is_success,
         }
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(VertifyAction, dispatch)
+        actions: bindActionCreators(VerifyAction, dispatch)
     };
 }
 

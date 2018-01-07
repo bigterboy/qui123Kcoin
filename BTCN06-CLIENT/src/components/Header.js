@@ -65,7 +65,7 @@ class Header extends React.Component {
                                         <div className="task-info">
                                             <div className="desc">
                                                 Project 1
-                           </div>
+                                            </div>
                                             <div className="percent">30%</div>
                                         </div>
                                         <div className="progress progress-striped">
@@ -140,7 +140,7 @@ class Header extends React.Component {
                                         </span>
                                         <span className="message">
                                             I really like this admin panel.
-                         </span>
+                                        </span>
                                     </a>
                                 </li>
                                 <li>
@@ -152,7 +152,7 @@ class Header extends React.Component {
                                         </span>
                                         <span className="message">
                                             Hi, What is next project plan?
-                         </span>
+                                        </span>
                                     </a>
                                 </li>
                                 <li>
@@ -164,7 +164,7 @@ class Header extends React.Component {
                                         </span>
                                         <span className="message">
                                             I am like to buy this Admin Template.
-                         </span>
+                                        </span>
                                     </a>
                                 </li>
                                 <li>
@@ -176,7 +176,7 @@ class Header extends React.Component {
                                         </span>
                                         <span className="message">
                                             Icon fonts are great.
-                         </span>
+                                        </span>
                                     </a>
                                 </li>
                                 <li>

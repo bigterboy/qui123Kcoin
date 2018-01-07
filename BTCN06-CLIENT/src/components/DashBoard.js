@@ -1,7 +1,7 @@
 import React from 'react'
-
 import SideBar from './SideBar'
 import SendModal from './SendModal'
+import './css-comps/DashBoard.css' 
 
 
 
@@ -66,7 +66,7 @@ class DashBoard extends React.Component {
                                 <section className="panel">
                                     <header className="panel-heading">
                                         Receive
-                </header>
+                                    </header>
                                     <table className="table table-striped">
                                         <thead>
                                             <tr>

@@ -285,10 +285,7 @@ exports.sign_up2 = function(req, res, next){
 
 
 
-exports.test = function(req, res, next){
-    //console.log("dang chay test12321312312");
-    //console.log(req.body);
-
+exports.check_verify = function(req, res, next){
 
     var errors = req.validationErrors();
     if(errors){
@@ -297,26 +294,29 @@ exports.test = function(req, res, next){
         return;
     }
 
-    //console.log("chay nua k?");
+    var verify = req.body.verify;
+    console.log('verify: ' + verify);
 
-    var vertify = req.body.vertify;
-    var email = req.body.email;
-
-    //var password = req.body.password;
-    console.log(vertify);
-    //console.log(email);
-    User.findOne({stokenID : vertify}, (err, user)=>{
+    User.findOne({stokenID : verify}, (err, user)=>{
         if(err){
             res.json({status : 0, message : err});
             return;
         }
+
         if(user){
             user.active = true;
-            //user.balances = 20000;
-            //console.log(user);
             user.save();
+            res.json({
+                status: 1,
+                email: user.email,
+                walletId: user.walletId
+            });
+
             return;
         }
+
+        res.json({status : 0, message : 'USER_NOT_FOUND'});
+        return;
     });
 }
 

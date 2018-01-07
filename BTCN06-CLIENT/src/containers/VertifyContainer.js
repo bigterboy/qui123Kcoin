@@ -26,6 +26,7 @@ class SignUpContainer extends React.Component {
         const value = e.target.value;
         switch(name){
             case 'email' : this.props.actions.setSignUpEmail(value); break;
+            case 'vertify' : this.props.actions.setSignUpVertify(value); break;
             case 'password' : this.props.actions.setSignUpPassword(value); break;
             case 'rePassword' : this.props.actions.setSignUpRePassword(value);break;
         }
@@ -35,6 +36,7 @@ class SignUpContainer extends React.Component {
     handleClick() {
         const account = {
             email: this.props.todos.email,
+            vertify: this.props.todos.vertify,
             password: this.props.todos.password,
             rePassword: this.props.todos.rePassword
         }
@@ -59,6 +61,7 @@ class SignUpContainer extends React.Component {
             <div>
                 <Vertify message={todos.message}
                         email={todos.email}
+                         vertify={todos.vertify}   // cais nay dung de lam gi
                         password={todos.password}
                         user={todos.user}
                         rePassword={todos.rePassword}
@@ -73,11 +76,12 @@ function mapStateToProps(state) {
 
     return {
         todos: {
-            email: state.SignUpReducer.email,
-            password: state.SignUpReducer.password,
-            rePassword: state.SignUpReducer.rePassword,
-            message: state.SignUpReducer.message,
-            user: state.SignUpReducer.user
+            email: state.VertifyReducer.email,
+            vertify: state.VertifyReducer.vertify,
+            password: state.VertifyReducer.password,
+            rePassword: state.VertifyReducer.rePassword,
+            message: state.VertifyReducer.message,
+            user: state.VertifyReducer.user
         }
     }
 }

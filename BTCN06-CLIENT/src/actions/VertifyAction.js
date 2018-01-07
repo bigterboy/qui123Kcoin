@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import {SIGNUP, SIGNUP_FAILURE, SIGNUP_SUCCESS,
+import {SIGNUP, SIGNUP_FAILURE, SIGNUP_SUCCESS,SET_VERTIFY_EMAIL,
     SET_SIGNUP_EMAIL, SET_SIGNUP_REPASSWORD, SET_SIGNUP_PASSWORD
 }
     from '../constants/ActionTypes'
@@ -15,6 +15,15 @@ export function setSignUpEmail(email){
         email
     }
 }
+
+export function setSignUpVertify(vertify){
+    return {
+        type : SET_VERTIFY_EMAIL,
+        vertify
+    }
+}
+
+
 
 export function setSignUpPassword(password){
 

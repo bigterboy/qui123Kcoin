@@ -56,6 +56,11 @@ class SignUp extends React.Component {
                                     </div>
 
                                     <div className="form-group">
+                                        <label>Stoken vertify</label>
+                                        <input onChange={this.props.onChange} value={this.props.vertify} name="vertify" type="email" className="form-control" />
+                                    </div>
+
+                                    <div className="form-group">
                                         <label>Password</label>
                                         <input onChange={this.props.onChange} value={this.props.password} name="password" type="password" className="form-control" />
                                     </div>

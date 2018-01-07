@@ -9,11 +9,15 @@ var jwt = require('jsonwebtoken');
 
 var randomstring = require("randomstring");
 
+var mailer = require('../../misc/mailer');
+
 const ursa = require('ursa');
 const _ = require('lodash');
 const crypto = require('crypto');
 
 const HASH_ALGORITHM = 'sha256';
+
+
 
 exports.authenticate = (req, res, next)=>{
     console.log('req', req.query);
@@ -148,22 +152,40 @@ exports.sign_up = function(req, res, next){
         newUser.balances = 1000;
         newUser.walletId = uuidv4();
 
-        newUser.privateKey = "12314";
-        newUser.publicKey = "154423";
-        newUser.address = "f3243";
+        newUser.stokenID = randomstring.generate(36); // tự động phát sinh ngẫu nhiên
+        newUser.active = false;
 
 
         let privateKey = ursa.generatePrivateKey(1024, 65537);
         let publicKey = privateKey.toPublicPem();
 
         newUser.privateKey = privateKey.toPrivatePem('hex');
-            newUser.publicKey = publicKey.toString('hex');
-            newUser.address = hash(publicKey).toString('hex');
+        newUser.publicKey = publicKey.toString('hex');
+        newUser.address = hash(publicKey).toString('hex');
 
 
 
-        newUser.stokenID = randomstring.generate(36); // tự động phát sinh ngẫu nhiên
-        newUser.active = false;
+        // Compose email
+        const html = `Hi there,
+      <br/>
+      Thank you for registering!
+      <br/><br/>
+      Please verify your email by typing the following token:
+      <br/>
+      Verification code : <b>${newUser.stokenID}</b>
+      <br/>
+      On the following page:
+      <a href="http://localhost:3000/vertify">http://localhost:3000/vertify</a>
+      <br/><br/>
+      Have a pleasant day.`;
+
+
+
+        mailer.sendEmail('ninatabala@gmail.com',newUser.email, 'Please verify your email',html);
+        //req.flash('success','Please check your email');
+
+
+
         newUser.save((err, newUser)=>{
             if(err){
                 res.json({status : 0, message : err});
@@ -235,7 +257,7 @@ exports.sign_up2 = function(req, res, next){
 
 exports.test = function(req, res, next){
     console.log("vô test");
-
+    console.log(req.body);
 
 
     var errors = req.validationErrors();
@@ -247,12 +269,13 @@ exports.test = function(req, res, next){
 
     //console.log("chay nua k?");
 
+    var vertify = req.body.vertify;
     var email = req.body.email;
-    //var vertify = req.body.verify;
+
     //var password = req.body.password;
-    //console.log(vertify);
-    //console.log(email);
-    User.findOne({email : 'bigterboy@yahoo.com.vn'}, (err, user)=>{
+    console.log(vertify);
+    console.log(email);
+    User.findOne({stokenID : vertify}, (err, user)=>{
         if(err){
             res.json({status : 0, message : err});
             return;
@@ -268,16 +291,6 @@ exports.test = function(req, res, next){
 }
 
 
-
-let generateAddress = function () {
-    let privateKey = ursa.generatePrivateKey(1024, 65537);
-    let publicKey = privateKey.toPublicPem();
-    return {
-        privateKey: privateKey.toPrivatePem('hex'),
-        publicKey: publicKey.toString('hex'),
-        address: hash(publicKey).toString('hex')
-    };
-};
 
 let hash = function (data) {
     let hash = crypto.createHash(HASH_ALGORITHM);

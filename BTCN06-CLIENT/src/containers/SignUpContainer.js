@@ -73,12 +73,12 @@ function mapStateToProps(state) {
 
     return {
         todos: {
-            email: state.SignUpReducer.email,
-            password: state.SignUpReducer.password,
-            rePassword: state.SignUpReducer.rePassword,
-            message: state.SignUpReducer.message,
-            user: state.SignUpReducer.user
-        }
+        email: state.SignUpReducer.email,
+        password: state.SignUpReducer.password,
+        rePassword: state.SignUpReducer.rePassword,
+        message: state.SignUpReducer.message,
+        user: state.SignUpReducer.user
+    }
     }
 }
 

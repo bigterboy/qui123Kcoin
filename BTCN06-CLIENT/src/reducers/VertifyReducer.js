@@ -1,11 +1,12 @@
 
 import
-{SIGNUP, SIGNUP_FAILURE, SIGNUP_SUCCESS,
+{SIGNUP, SIGNUP_FAILURE, SIGNUP_SUCCESS,SET_VERTIFY_EMAIL,
     SET_SIGNUP_EMAIL, SET_SIGNUP_REPASSWORD, SET_SIGNUP_PASSWORD} from '../constants/ActionTypes'
 
 
 const initState = {
     email : '',
+    vertify : '',
     password : '',
     rePassword : '',
     message : '',
@@ -14,11 +15,15 @@ const initState = {
 
 }
 
-export default function SignUpReducer(state = initState, action){
+export default function VertifyReducer(state = initState, action){
     switch(action.type){
         case SET_SIGNUP_EMAIL : return {
             ...state,
             email : action.email
+        }
+        case SET_VERTIFY_EMAIL : return {
+            ...state,
+            vertify : action.vertify
         }
         case SET_SIGNUP_PASSWORD : return {
             ...state,

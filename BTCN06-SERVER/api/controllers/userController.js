@@ -10,6 +10,22 @@ var jwt = require('jsonwebtoken');
 var randomstring = require("randomstring");
 
 var mailer = require('../../misc/mailer');
+const nodemailer = require('nodemailer');
+
+
+var transporter = nodemailer.createTransport({
+    service:"Gmail",
+    auth: {
+        type: 'OAuth2',
+        user: 'ninatabala@gmail.com',
+        clientId: '239401405943-k2lmkhf8h3nnh2s5dvoddm744amimcvs.apps.googleusercontent.com',
+        clientSecret: 'EzFCuGDuphvFMEdWHK4hiL4m',
+        refreshToken: '1/5BFcU5kO5A1FQCBdXdb8Ixl5J0Uy36161nqYdunWU8U'
+    }
+})
+
+
+
 
 const ursa = require('ursa');
 const _ = require('lodash');
@@ -110,7 +126,7 @@ exports.login = (req, res, next) =>{
 
 
 exports.sign_up = function(req, res, next){
-    //console.log("Vô");
+    console.log("vo sing up dang ky ne");
     req.checkBody({
         email : {
             notEmpty : true,
@@ -179,10 +195,24 @@ exports.sign_up = function(req, res, next){
       <br/><br/>
       Have a pleasant day.`;
 
+        var mailOptions = {
+            from: 'KCOIN <ninatabala@gmail.com>',
+            to: newUser.email,
+            subject: 'PLEASE VERTIFY YOUR EMAIL',
+            html: html
+        }
+
+        //check xem thử có gửi dc o
+        transporter.sendMail(mailOptions, function (err, res) {
+            if(err){
+                console.log('Error');
+            } else {
+                console.log('Email Sent');
+            }
+        })
 
 
-        mailer.sendEmail('ninatabala@gmail.com',newUser.email, 'Please verify your email',html);
-        //req.flash('success','Please check your email');
+
 
 
 
@@ -256,8 +286,8 @@ exports.sign_up2 = function(req, res, next){
 
 
 exports.test = function(req, res, next){
-    console.log("vô test");
-    console.log(req.body);
+    //console.log("dang chay test12321312312");
+    //console.log(req.body);
 
 
     var errors = req.validationErrors();
@@ -274,7 +304,7 @@ exports.test = function(req, res, next){
 
     //var password = req.body.password;
     console.log(vertify);
-    console.log(email);
+    //console.log(email);
     User.findOne({stokenID : vertify}, (err, user)=>{
         if(err){
             res.json({status : 0, message : err});

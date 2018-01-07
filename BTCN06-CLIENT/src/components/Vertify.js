@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom'
 
 
-class SignUp extends React.Component {
+class Vertify extends React.Component {
 
 
     render() {
@@ -82,4 +82,4 @@ class SignUp extends React.Component {
     }
 }
 
-export default SignUp
+export default Vertify

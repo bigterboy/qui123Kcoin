@@ -5,13 +5,11 @@ import {
     VERIFY_SET_MESSAGE,
     SET_VERIFY_CODE,
     SET_SIGNUP_EMAIL,
-    SET_SIGNUP_REPASSWORD,
     SET_SIGNUP_PASSWORD,
     CHECK_VERIFY,
-    VERIFY_IS_SUCCESS
+    VERIFY_IS_SUCCESS,
+    ROOT_URL
 }from '../constants/ActionTypes'
-
-const ROOT_URL = 'http://localhost:5000'
 
 
 

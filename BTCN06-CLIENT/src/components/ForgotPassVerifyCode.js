@@ -1,12 +1,7 @@
 
 import React from 'react'
 
-import {
-    Link
-} from 'react-router-dom'
-
-
-class Verify extends React.Component {
+class ForgotPassVerifyCode extends React.Component {
 
 
     render() {
@@ -17,15 +12,15 @@ class Verify extends React.Component {
                         <form id="sign-up">
                             <div className="row">
                                 <div className="col-sm-7">
-                                    <span className="subject">Verify Your Wallet</span>
+                                    <span className="subject">Forgotten Account?</span>
                                 </div>
 
                                 <div className="col-sm-5">
-                                    <span>or <Link className="btn btn-warning" to="/login">Login</Link></span>
+                                    {/*<span>or <Link className="btn btn-warning" to="/login">Login</Link></span>*/}
                                 </div>
 
                                 <div className="col-sm-12">
-                                    Check your verify code
+                                    <p className="text-info"> Please check email to get password change code</p>
                                 </div>
 
                                 <div className="col-sm-12">
@@ -48,14 +43,24 @@ class Verify extends React.Component {
                             <div className="row">
                                 <div className="col-sm-12">
                                     <div className="form-group">
-                                        <label>Stoken verify</label>
+                                        <label>Check code <span className="text-danger">*</span></label>
                                         <input onChange={this.props.onChange} value={this.props.verify} name="verify" type="text" className="form-control" />
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label>New password</label>
+                                        <input onChange={this.props.onChange} value={this.props.verify} name="verify" type="email" className="form-control" />
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label>Retype password</label>
+                                        <input onChange={this.props.onChange} value={this.props.verify} name="verify" type="email" className="form-control" />
                                     </div>
                                 </div>
 
                                 <div className="col-sm-12">
                                     <div className="form-group">
-                                        <button onClick={this.props.onClick} className="btn btn-info btn-block" type="button">VERIFY & GET WALLET</button>
+                                        <button onClick={this.props.onClick} className="btn btn-success btn-block" type="button">VERIFY & CHANGE PASSWORD</button>
                                     </div>
                                 </div>
                                 
@@ -68,4 +73,4 @@ class Verify extends React.Component {
     }
 }
 
-export default Verify
+export default ForgotPassVerifyCode

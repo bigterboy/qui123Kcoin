@@ -7,13 +7,6 @@ import * as HomeAction from '../actions/HomeAction'
 
 
 class HomeContainer extends React.Component{
-
-    constructor(props){
-        super(props);
-       
-        
-    }
-
     componentDidMount() {
         console.log("Day la transaction");
         

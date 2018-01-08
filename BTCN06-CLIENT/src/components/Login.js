@@ -22,7 +22,7 @@ class Login extends React.Component {
                             <form id="sign-up">
                                 <div className="row">
                                     <div className="col-sm-7">
-                                        <span className="subject">Welcome Back</span>
+                                        <span className="subject">Welcome to LoginPage</span>
                                     </div>
                                     <div className="col-sm-5">
                                         <span>or <Link className="btn btn-warning" to="/sign-up">Sign Up</Link></span>
@@ -30,11 +30,10 @@ class Login extends React.Component {
 
                                     <div className="col-sm-12">
                                         Sign in to your wallet below
-                                            </div>
+                                    </div>
 
                                     <div className="col-sm-12">
                                         <hr />
-
                                         <p className="text-danger">{this.props.message}</p>
                                     </div>
                                 </div>
@@ -49,6 +48,10 @@ class Login extends React.Component {
                                         <div className="form-group">
                                             <label>Password</label>
                                             <input  onChange={this.props.onChange} name="password" value={this.props.password} type="password" className="form-control" />
+                                        </div>
+
+                                        <div className="form-group">
+                                            <Link to="/">Forgotten account?</Link>
                                         </div>
 
                                         <div className="form-group">

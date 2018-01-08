@@ -11,7 +11,7 @@ class DashBoard extends React.Component {
 
     render() {
         const user = JSON.parse(sessionStorage.getItem('user'));
-        console.log("day la user", user);
+        // console.log("day la user", user);
         return (
             <div>
                 <SideBar />

@@ -28,6 +28,7 @@ class SignUpContainer extends React.Component {
             case 'email' : this.props.actions.setSignUpEmail(value); break;
             case 'password' : this.props.actions.setSignUpPassword(value); break;
             case 'rePassword' : this.props.actions.setSignUpRePassword(value);break;
+            default: break;
         }
         
     }
@@ -54,7 +55,7 @@ class SignUpContainer extends React.Component {
     }
 
     render() {
-        const {todos, actions} = this.props;
+        const {todos} = this.props;
         return (
             <div>
                 <SignUp message={todos.message}

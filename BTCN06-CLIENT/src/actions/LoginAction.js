@@ -1,9 +1,12 @@
-import {LOGIN, LOGIN_FAILURE, LOGIN_SUCCESS,
-SET_LOGIN_WALLETID, SET_LOGIN_PASSWORD} from '../constants/ActionTypes'
+import {
+    LOGIN,
+    LOGIN_FAILURE,
+    LOGIN_SUCCESS,
+    SET_LOGIN_WALLETID,
+    SET_LOGIN_PASSWORD,
+    ROOT_URL
+} from '../constants/ActionTypes'
 import axios from 'axios'
-
-
-const ROOT_URL = 'http://localhost:5000'
 
 export function setLoginWalletId(walletId) {
     return {
@@ -29,8 +32,6 @@ export function login(account){
 }
 
 export function loginSuccess(response){
-
-    
     return {
         type : LOGIN_SUCCESS,
         payload : response

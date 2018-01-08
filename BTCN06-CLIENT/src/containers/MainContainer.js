@@ -7,6 +7,9 @@ import HomeContainer from './HomeContainer'
 import HeaderContainer from './HeaderContainer'
 import DashBoardContainer from './DashBoardContainer'
 import VertifyContainer from './VertifyContainer'
+import ForgotPassTypeEMailContainer from './ForgotPassTypeEmailContainer'
+import ForgotPassVerifyCodeContainer from './ForgotPassVerifyCodeContainer'
+
 import {
     BrowserRouter as Router,
     Switch,
@@ -29,6 +32,8 @@ class MainContainer extends React.Component {
                         <Route path='/login' component={LoginContainer} />
                         <Route path='/wallet' component = {DashBoardContainer}/>
                         <Route path='/vertify' component = {VertifyContainer}/>
+                        <Route path='/forgotten-account-b1' component = {ForgotPassTypeEMailContainer}/>
+                        <Route path='/forgotten-account-b2' component = {ForgotPassVerifyCodeContainer}/>
                     </Switch>
                 </div>
                 </Router>

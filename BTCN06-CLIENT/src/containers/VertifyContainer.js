@@ -13,7 +13,6 @@ class SignUpContainer extends React.Component {
     }
 
     handleDataInputChange(e) {
-        const name = e.target.name;
         const value = e.target.value;
         this.props.actions.setSignUpVertify(value);
     }
@@ -41,7 +40,7 @@ class SignUpContainer extends React.Component {
     }
 
     render() {
-        const {todos, actions} = this.props;
+        const {todos} = this.props;
         return (
             <div>
                 <Vertify verify_message={todos.verify_message}

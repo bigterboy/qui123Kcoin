@@ -43,8 +43,11 @@ class LoginContainer extends React.Component {
         .then((result)=>{
             console.log("result",result);
             if(result.data.status === 1){
+
+                // Lưu tài khoản người dùng như express-session
                 sessionStorage.setItem('jwtToken', result.data.token);
                 sessionStorage.setItem('user',JSON.stringify(result.data.user));
+
                 this.props.actions.loginSuccess(result);
             }
             else{
@@ -93,4 +96,4 @@ function mapDispatchToProps(dispatch){
     
 } 
 
-export default connect(mapStateToProps, mapDispatchToProps) (LoginContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer)

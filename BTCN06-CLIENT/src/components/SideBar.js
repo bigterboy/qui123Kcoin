@@ -17,7 +17,7 @@ class SideBar extends React.Component {
                             </a>
                         </li>
                         <li className="sub-menu">
-                            <a href="javascript:;">
+                            <a href="javascript">
                                 <i className="icon_document_alt" />
                                 <span>Forms</span>
                                 <span className="menu-arrow arrow_carrot-right" />

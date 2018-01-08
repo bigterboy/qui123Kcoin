@@ -1,7 +1,6 @@
 import React from 'react'
 import {
-    Link,
-    Route
+    Link
 } from 'react-router-dom'
 
 
@@ -38,17 +37,17 @@ class Header extends React.Component {
                     <ul className="nav pull-right top-menu">
                         {/* task notificatoin start */}
                         <li id="task_notificatoin_bar" className="dropdown">
-                            <a data-toggle="dropdown" className="dropdown-toggle" href="#">
+                            <span data-toggle="dropdown" className="dropdown-toggle">
                                 <i className="icon-task-l" />
                                 <span className="badge bg-important">5</span>
-                            </a>
+                            </span>
                             <ul className="dropdown-menu extended tasks-bar">
                                 <div className="notify-arrow notify-arrow-blue" />
                                 <li>
                                     <p className="blue">You have 5 pending tasks</p>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <span>
                                         <div className="task-info">
                                             <div className="desc">Design PSD </div>
                                             <div className="percent">90%</div>
@@ -58,10 +57,10 @@ class Header extends React.Component {
                                                 <span className="sr-only">90% Complete (success)</span>
                                             </div>
                                         </div>
-                                    </a>
+                                    </span>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <span>
                                         <div className="task-info">
                                             <div className="desc">
                                                 Project 1
@@ -73,10 +72,10 @@ class Header extends React.Component {
                                                 <span className="sr-only">30% Complete (warning)</span>
                                             </div>
                                         </div>
-                                    </a>
+                                    </span>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <span>
                                         <div className="task-info">
                                             <div className="desc">Digital Marketing</div>
                                             <div className="percent">80%</div>
@@ -86,10 +85,10 @@ class Header extends React.Component {
                                                 <span className="sr-only">80% Complete</span>
                                             </div>
                                         </div>
-                                    </a>
+                                    </span>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <span>
                                         <div className="task-info">
                                             <div className="desc">Logo Designing</div>
                                             <div className="percent">78%</div>
@@ -99,10 +98,10 @@ class Header extends React.Component {
                                                 <span className="sr-only">78% Complete (danger)</span>
                                             </div>
                                         </div>
-                                    </a>
+                                    </span>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <span>
                                         <div className="task-info">
                                             <div className="desc">Mobile App</div>
                                             <div className="percent">50%</div>
@@ -112,17 +111,17 @@ class Header extends React.Component {
                                                 <span className="sr-only">50% Complete</span>
                                             </div>
                                         </div>
-                                    </a>
+                                    </span>
                                 </li>
                                 <li className="external">
-                                    <a href="#">See All Tasks</a>
+                                    <a>See All Tasks</a>
                                 </li>
                             </ul>
                         </li>
                         {/* task notificatoin end */}
                         {/* inbox notificatoin start*/}
                         <li id="mail_notificatoin_bar" className="dropdown">
-                            <a data-toggle="dropdown" className="dropdown-toggle" href="#">
+                            <a data-toggle="dropdown" className="dropdown-toggle">
                                 <i className="icon-envelope-l" />
                                 <span className="badge bg-important">5</span>
                             </a>
@@ -132,7 +131,7 @@ class Header extends React.Component {
                                     <p className="blue">You have 5 new messages</p>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a>
                                         <span className="photo"><img alt="avatar" src="./img/avatar-mini.jpg" /></span>
                                         <span className="subject">
                                             <span className="from">Greg  Martin</span>
@@ -144,7 +143,7 @@ class Header extends React.Component {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a>
                                         <span className="photo"><img alt="avatar" src="./img/avatar-mini2.jpg" /></span>
                                         <span className="subject">
                                             <span className="from">Bob   Mckenzie</span>
@@ -156,7 +155,7 @@ class Header extends React.Component {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a>
                                         <span className="photo"><img alt="avatar" src="./img/avatar-mini3.jpg" /></span>
                                         <span className="subject">
                                             <span className="from">Phillip   Park</span>
@@ -168,7 +167,7 @@ class Header extends React.Component {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a>
                                         <span className="photo"><img alt="avatar" src="./img/avatar-mini4.jpg" /></span>
                                         <span className="subject">
                                             <span className="from">Ray   Munoz</span>
@@ -180,14 +179,14 @@ class Header extends React.Component {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">See all messages</a>
+                                    <a>See all messages</a>
                                 </li>
                             </ul>
                         </li>
                         {/* inbox notificatoin end */}
                         {/* alert notification start*/}
                         <li id="alert_notificatoin_bar" className="dropdown">
-                            <a data-toggle="dropdown" className="dropdown-toggle" href="#">
+                            <a data-toggle="dropdown" className="dropdown-toggle">
                                 <i className="icon-bell-l" />
                                 <span className="badge bg-important">7</span>
                             </a>
@@ -197,42 +196,42 @@ class Header extends React.Component {
                                     <p className="blue">You have 4 new notifications</p>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a>
                                         <span className="label label-primary"><i className="icon_profile" /></span>
                                         Friend Request
                          <span className="small italic pull-right">5 mins</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a>
                                         <span className="label label-warning"><i className="icon_pin" /></span>
                                         John location.
                          <span className="small italic pull-right">50 mins</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a>
                                         <span className="label label-danger"><i className="icon_book_alt" /></span>
                                         Project 3 Completed.
                          <span className="small italic pull-right">1 hr</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a>
                                         <span className="label label-success"><i className="icon_like" /></span>
                                         Mick appreciated your work.
                          <span className="small italic pull-right"> Today</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">See all notifications</a>
+                                    <a>See all notifications</a>
                                 </li>
                             </ul>
                         </li>
                         {/* alert notification end*/}
                         {/* user login dropdown start*/}
                         <li className="dropdown">
-                            <a data-toggle="dropdown" className="dropdown-toggle" href="#">
+                            <a data-toggle="dropdown" className="dropdown-toggle">
                                 <span className="profile-ava">
                                     <img alt="true" src="img/avatar1_small.jpg" />
                                 </span>

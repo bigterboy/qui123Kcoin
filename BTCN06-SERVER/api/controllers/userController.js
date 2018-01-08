@@ -157,15 +157,17 @@ exports.sign_up = function(req, res, next){
             res.json({status : 0, message : err});
             return;
         }
+
         if(user){
-            res.json({status : 0, message : "Email was used123"})
+            res.json({status : 0, message : "Email already exists!"})
             return;
         }
         
         var newUser = new User();
         newUser.email = email;
         newUser.password = bcrypt.hashSync(password);
-        newUser.balances = 1000;
+        newUser.actualBalances = 0;
+        newUser.theoreticalBalances = 0;
         newUser.walletId = uuidv4();
 
         newUser.stokenID = randomstring.generate(36); // tự động phát sinh ngẫu nhiên
@@ -183,17 +185,17 @@ exports.sign_up = function(req, res, next){
 
         // Compose email
         const html = `Hi there,
-      <br/>
-      Thank you for registering!
-      <br/><br/>
-      Please verify your email by typing the following token:
-      <br/>
-      Verification code : <b>${newUser.stokenID}</b>
-      <br/>
-      On the following page:
-      <a href="http://localhost:3000/vertify">http://localhost:3000/vertify</a>
-      <br/><br/>
-      Have a pleasant day.`;
+          <br/>
+          Thank you for registering!
+          <br/><br/>
+          Please verify your email by typing the following token:
+          <br/>
+          Verification code : <b>${newUser.stokenID}</b>
+          <br/>
+          On the following page:
+          <a href="http://localhost:3000/vertify">http://localhost:3000/vertify</a>
+          <br/><br/>
+          Have a pleasant day.`;
 
         var mailOptions = {
             from: 'KCOIN <ninatabala@gmail.com>',

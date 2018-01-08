@@ -1,5 +1,10 @@
-import {LOGIN, LOGIN_FAILURE, LOGIN_SUCCESS,
-SET_LOGIN_PASSWORD, SET_LOGIN_WALLETID} from '../constants/ActionTypes'
+import {
+    LOGIN,
+    LOGIN_FAILURE,
+    LOGIN_SUCCESS,
+    SET_LOGIN_PASSWORD,
+    SET_LOGIN_WALLETID
+} from '../constants/ActionTypes'
 
 
 const initState = {

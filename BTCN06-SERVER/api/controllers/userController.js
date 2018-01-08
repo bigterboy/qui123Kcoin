@@ -1,15 +1,13 @@
-
 var express = require('express');
 var app = express();
+
 app.set('superSecret', 'voduythaosecret');
+
 var User = require('../models/user');
 var uuidv4 = require('uuid/v4');
 const bcrypt = require('bcrypt-nodejs');
 var jwt = require('jsonwebtoken');
-
 var randomstring = require("randomstring");
-
-var mailer = require('../../misc/mailer');
 const nodemailer = require('nodemailer');
 
 
@@ -22,8 +20,7 @@ var transporter = nodemailer.createTransport({
         clientSecret: 'EzFCuGDuphvFMEdWHK4hiL4m',
         refreshToken: '1/5BFcU5kO5A1FQCBdXdb8Ixl5J0Uy36161nqYdunWU8U'
     }
-})
-
+});
 
 
 
@@ -56,7 +53,7 @@ exports.authenticate = (req, res, next)=>{
             message : 'No token provided'
         });
     }
-}
+};
 
 
 exports.login = (req, res, next) =>{
@@ -70,10 +67,7 @@ exports.login = (req, res, next) =>{
             notEmpty : true,
             errorMessage : "Invalid password"
         }
-    })
-
-
-
+    });
 
 
     var errors = req.validationErrors();
@@ -85,7 +79,6 @@ exports.login = (req, res, next) =>{
 
     var walletId = req.body.walletId;
     var password = req.body.password;
-    
 
     User.findOne({walletId : walletId}, (err, user)=>{
         if(err){
@@ -108,21 +101,21 @@ exports.login = (req, res, next) =>{
         }
 
 
-
-
-
         const payload = {
             admin : false
-        }
+        };
+
         var token = jwt.sign(payload, app.get('superSecret'),{
             expiresIn : 60*60*24 // expires in 15 minutes
-        });  
+        });
+
+
+        // Lưu Session của user
+        req.session.user = user;
 
         res.json({status:1, messsage : 'success', user : user, token : token})
     });
-}
-
-
+};
 
 
 exports.sign_up = function(req, res, next){
@@ -285,8 +278,6 @@ exports.sign_up2 = function(req, res, next){
 }
 
 
-
-
 exports.check_verify = function(req, res, next){
 
     var errors = req.validationErrors();
@@ -322,6 +313,34 @@ exports.check_verify = function(req, res, next){
     });
 }
 
+
+exports.get_info_user = function(req, res, next){
+    if(req.session.user){
+        const userInfo = req.session.user;
+        res.send({
+            status: 1,
+            message: 'user is signed!',
+            email: userInfo.email
+        });
+    } else{
+        res.send({status: 0});
+    }
+};
+
+exports.clear_user_info = function(req, res, next){
+    if(req.session.user){
+        req.session.user = undefined;
+        res.send({
+            status: 1,
+            message: 'clear user info success!'
+        });
+    } else{
+        res.send({
+            status: 0,
+            message: 'not have user info to clear!'
+        });
+    }
+};
 
 
 let hash = function (data) {

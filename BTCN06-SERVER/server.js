@@ -1,9 +1,11 @@
 var express = require('express');
+var session = require('express-session');
 var app = express();
 var port = process.env.PORT || 5000;
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
+
 
 
 //mongoose instance connection url connection
@@ -18,7 +20,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(expressValidator());
 
-
+app.use(session({
+    secret: 'qwer321sadf321ert654rty8dfg564dfg87cv54fdh87e',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 1000*60*60*24 }
+}));
 
 
 app.use(function(req, res, next) {
@@ -29,11 +36,14 @@ app.use(function(req, res, next) {
     next();
 });
 
-var route = require('./api/routes/userRoute');//importing route
-route(app); //register the route
+// var route = require('./api/routes/userRoute');//importing route
+// route(app); //register the route
 
+var userRoute = require('./api/_api/userRoute');
+var transactionRoute = require('./api/_api/transactionRoute');
 
-
+app.use('/user', userRoute);
+app.use('/transaction', transactionRoute);
 
 
 

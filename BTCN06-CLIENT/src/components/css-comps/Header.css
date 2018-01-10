@@ -1,0 +1,71 @@
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+.selected {
+	border-color: #1EB353 !important;
+	background-image: url("../../images/mobile-card.png") !important;
+	opacity: 1 !important;
+	-webkit-transition-duration: 800ms;
+	-moz-transition-duration: 800ms;
+}
+label.viettel, label.vinaphone, label.gate, label.mobile, label.vcoin, label.vnm  {
+	background-image: url("../../images/mobile-card.png");
+	border: 1px solid rgba(0, 0, 0, 0.22);
+	opacity: 0.5;
+}
+label.viettel {
+	background-position: -130px -1px;
+}
+label.viettel-active {
+	background-position: -132px 1px;
+}
+label.vinaphone {
+	background-position: -1px 1px;
+}
+label.gate {
+	background-position: 227px 0px;
+}
+
+label.mobile {
+	background-position: 355px 0px;
+}
+label.vcoin {
+	background-position: -258px -1px;
+}
+label.vnm {
+	background-position: 124px 0px;
+}
+.acivte-card-conten div {
+	width:350px;
+	opacity: 1;
+}
+.emotion div{
+	background-color: #1DB455;
+}
+.emotion{
+	position: relative;
+	width:120px;
+	height:62px;
+	padding:3px;
+	margin:10px 0px 0px 10px;
+	display: inline-block;
+}
+.emotion input{
+	display:none;
+}
+.emotion label{
+	z-index:2;
+	cursor: pointer;
+	border:1pt solid rgba(32, 31, 29, 0.33);
+	width:130px;
+	height:62px;
+	position: absolute;
+	-webkit-transition-property: opacity;
+	-moz-transition-property: opacity;
+	-webkit-transition-duration: 800ms;
+	-moz-transition-duration: 800ms;
+}

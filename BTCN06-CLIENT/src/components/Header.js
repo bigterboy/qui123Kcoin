@@ -11,14 +11,14 @@ class Header extends React.Component {
     render() {
         const user =  JSON.parse(sessionStorage.getItem('user'));
         return (
-            <header className="header dark-bg">
+            <header className="header dark-bg myheaer">
                 <div className="toggle-nav">
                     <div className="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i className="icon_menu" /></div>
                 </div>
                 {/*logo start*/}
                 <Link to="/" className="logo">BLOCK <span className="lite">CHAIN</span></Link>
                 {/*logo end*/}
-                <div className="nav search-row" id="top_menu">
+                <div className="nav search-row" id="top_menu seaerch">
                     {/*  search form start */}
                     <ul className="nav top-menu">
                         <li>
@@ -34,7 +34,7 @@ class Header extends React.Component {
                 {user ? (
                 <div className="top-nav notification-row">
                     {/* notificatoin dropdown start*/}
-                    <ul className="nav pull-right top-menu">
+                    <ul className="nav pull-right top-menu menu-class">
                         {/* task notificatoin start */}
                         <li id="task_notificatoin_bar" className="dropdown">
                             <span data-toggle="dropdown" className="dropdown-toggle">
@@ -48,7 +48,7 @@ class Header extends React.Component {
                                 </li>
                                 <li>
                                     <span>
-                                        <div className="task-info">
+                                        <div className="task-info info-classname">
                                             <div className="desc">Design PSD </div>
                                             <div className="percent">90%</div>
                                         </div>
@@ -67,7 +67,7 @@ class Header extends React.Component {
                                             </div>
                                             <div className="percent">30%</div>
                                         </div>
-                                        <div className="progress progress-striped">
+                                        <div className="progress progress-striped inomation">
                                             <div className="progress-bar progress-bar-warning" role="progressbar" aria-valuenow={30} aria-valuemin={0} aria-valuemax={100} style={{ width: '30%' }}>
                                                 <span className="sr-only">30% Complete (warning)</span>
                                             </div>
@@ -76,7 +76,7 @@ class Header extends React.Component {
                                 </li>
                                 <li>
                                     <span>
-                                        <div className="task-info">
+                                        <div className="task-info info text">
                                             <div className="desc">Digital Marketing</div>
                                             <div className="percent">80%</div>
                                         </div>
